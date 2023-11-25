@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoalKeeper</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script type="module" src="js/index.js"></script>
+</head>
+<body>
+    <div id="start-screen" class="start-screen" style="display: block;">
+        <h1 class="start-screen__title">GoalKeeper</h1>
+        <div class="start-screen__form">
+            <input class="start-screen__username" onkeyup="checkName()" type="text" name="name" id="userName" placeholder="Username">
+            <button class="start-screen__btn btn" onclick="startGame()" id="startGame" disabled>Start</button>
+        </div>
+    </div>
+</body>
+</html>
+
