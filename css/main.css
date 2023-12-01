@@ -26,12 +26,13 @@ body , input , button{
     color: #000000;
     height: 50px;
 }
-.start-screen{
+.screen{
     height: 100vh;
     width: 100vw;
+}
+.start-screen{
     background: #018686;
     text-align: center;
-    display: flex !important;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -60,4 +61,56 @@ body , input , button{
     justify-content: center;
     gap: 25px;
 }
+.start-screen__btn:disabled{
+    background: #7a7676;
+    cursor:default;
+}
+/* --------------------- */
+.countdown__number{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 120px;
+    color: red;
+}
+.goalkeeper{
+    background: #000;
+    width: 100px;
+    height: 150px;
+    position: absolute;
+    bottom: 0;
+}
 
+/* game-screen */
+.game-screen{
+    background: #7bb665;
+}
+.game-screen__header{
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 50px;
+    border-bottom: 3px solid #000;
+}
+
+.game-screen__gate{
+    position: relative;
+    width: 800px;
+    height: 350px;
+    background: #fff;
+    margin: 80px auto;
+    border: 5px solid #000;
+    border-radius: 5px 5px 0px 0px;
+    border-bottom: 0;
+}
+
+.game-screen__ball{
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border: 5px solid #000;
+    border-radius: 80px;
+    margin: 0 auto;
+}

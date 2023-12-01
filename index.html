@@ -7,12 +7,23 @@
     <link rel="stylesheet" href="css/main.css">
     <script type="module" src="js/index.js"></script>
 </head>
-<body>
-    <div id="start-screen" class="start-screen" style="display: block;">
+<body id="body">
+    <div id="start-screen" class="start-screen screen" style="display: flex;">
         <h1 class="start-screen__title">GoalKeeper</h1>
         <div class="start-screen__form">
-            <input class="start-screen__username" onkeyup="checkName()" type="text" name="name" id="userName" placeholder="Username">
-            <button class="start-screen__btn btn" onclick="startGame()" id="startGame" disabled>Start</button>
+            <input class="start-screen__username" type="text" name="name" id="userName" placeholder="Username">
+            <button class="start-screen__btn btn" id="startGame" disabled>Start</button>
+        </div>
+    </div>
+    <div id="game-screen" class="game-screen screen" style="display: none;">
+        <div class="game-screen__header">
+            <div class="game-screen__username" id="player"></div>
+            <span class="game-screen__timer" id="timer">5: 00</span>
+            <div class="game-screen__pause" id="pause"></div>
+        </div>
+        <div class="game-screen__main" id="game">
+            <div class="game-screen__gate" id="gate"></div>
+            <div class="game-screen__ball" id="ball"></div>
         </div>
     </div>
 </body>
