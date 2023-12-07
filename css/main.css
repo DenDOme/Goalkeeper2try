@@ -66,6 +66,15 @@ body , input , button{
     cursor:default;
 }
 /* --------------------- */
+.game-screen__cursor{
+    height: 60px;
+    width: 60px;
+    border: 5px solid #000;
+    border-radius: 80px;
+    background: none;
+    position: fixed;
+    pointer-events: none;
+}
 .countdown__number{
     position: absolute;
     top: 50%;
@@ -85,6 +94,7 @@ body , input , button{
 /* game-screen */
 .game-screen{
     background: #7bb665;
+    position: relative;
 }
 .game-screen__header{
     background: #fff;
@@ -113,4 +123,43 @@ body , input , button{
     border: 5px solid #000;
     border-radius: 80px;
     margin: 0 auto;
+}
+.game-screen__forge{
+    height: 100px;
+    width: 500px;
+    background: #000;
+    position: absolute;
+    left: 50%;
+    bottom: 5px;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+}
+.forge-sec{
+    width: 20%;
+    height: 20px;
+}
+.line{
+    position: absolute;
+    left: 14px;
+    height: 50px;
+    width: 10px;
+    background: #fff;
+}
+.forge-sec:nth-child(1){
+    background: #fff;
+}
+.forge-sec:nth-child(2){
+    background: #eeff00;
+}
+.forge-sec:nth-child(3){
+    background: #ff7b00;
+}
+.forge-sec:nth-child(4){
+    background: #ff3c00;
+}
+.forge-sec:nth-child(5){
+    background: #ff0000;
 }

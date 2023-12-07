@@ -5,18 +5,23 @@ export default class Goalkeeper{
     }
     gameOptions = {
         gkSpeed : 1000,
+        forgeSpeed: 300,
         gkCurr : 400,
         timer : 5 * 60,
         timerMode : 'limited',
         xDir : 1,
+        lineCur:14,
+        lDir : 1,
     }
     startGame(){
-        // this.clearAll();
-        this.removeStartDisp();
-        this.addGameDisp();
-        this.addName();
-        this.timer();
+        if(this.gameOptions.timerMode !== 'unlimited'){
+            this.countdownTimer();
+        }
         this.gkMovement();
+        this.initGC();
+    }
+    stopGame(){
+
     }
     timer(){
         let gameDisp = document.getElementById('body')
@@ -31,7 +36,7 @@ export default class Goalkeeper{
             if(count == -1){
                 gameDisp.removeChild(gameDisp.lastChild)
                 clearInterval(preTimer)
-                this.countdownTimer();
+                this.startGame();
             }
         }, 1000)
     }
@@ -48,6 +53,7 @@ export default class Goalkeeper{
             if(this.gameOptions.timer === -1){
                 timerDisp.innerHTML = ''
                 clearInterval(realTimer);
+                this.stopGame();
             }
         }, 1000)      
     }
@@ -67,10 +73,12 @@ export default class Goalkeeper{
         startGameBtn.addEventListener('click', () => {
             this.checkName(userInputText.value);
             this.name = userInputText.value;
-            this.startGame()
+            this.timer();
+            this.removeStartDisp();
+            this.addGameDisp();
+            this.addName();
         })
     }
-
     gkMovement(){
         let gameDisp = document.getElementById('gate');
         let gk = document.createElement('div');
@@ -78,18 +86,17 @@ export default class Goalkeeper{
         gk.id = 'goalkeeper';
         gk.style.transform = "translateX(-50%)"
         gameDisp.appendChild(gk);
-        let tempCurr = this.gameOptions.gkCurr;
-        let gkMoveId = setInterval(() => {
+        this.gameOptions.gkMove = setInterval(() => {
             let gk = document.getElementById('goalkeeper')
-            tempCurr += this.gameOptions.xDir;
-            gk.style.left = tempCurr + 'px';
-            if(tempCurr >= 800-55){
+            this.gameOptions.gkCurr += this.gameOptions.xDir;
+            gk.style.left = this.gameOptions.gkCurr + 'px';
+            if(this.gameOptions.gkCurr >= 800-55){
                 this.changeDir()
             }
-            if(tempCurr <= 45){
+            if(this.gameOptions.gkCurr <= 45){
                 this.changeDir();
             }
-        }, this.gameOptions.gkSpeed/45);
+        },this.gameOptions.gkSpeed/70);
     }
     checkName(name){
         if(name == 'tester'){
@@ -127,5 +134,64 @@ export default class Goalkeeper{
             this.gameOptions.xDir = 1;
             return
         }
+    }
+    moveGC(event){
+        document.getElementById('cursor').style.display = 'block';
+        document.getElementById('cursor').style.transform = 'translateY('+(event.clientY-640)+'px)';
+        document.getElementById('cursor').style.transform += 'translateX('+(event.clientX-30)+'px)';  
+    }
+    forgeBar(pChance){
+        let createForgeBar = document.getElementById('forge');
+        let createForgeLine = document.createElement('div');
+        let allLines = document.querySelectorAll('.line');
+        if(allLines.length >= 1){
+            createForgeBar.removeChild(allLines[0]);
+        }
+        createForgeLine.classList.add('line');
+        createForgeBar.appendChild(createForgeLine);
+        let lineCurr = 14; 
+        this.gameOptions.fBar = setInterval(() => {
+            lineCurr += this.gameOptions.lDir;
+            createForgeLine.style.left = lineCurr + 'px';
+            if(lineCurr >= 476){
+                this.changeDirL();
+            }
+            if(lineCurr <= 14){
+                this.changeDirL();
+            }
+        }, this.gameOptions.forgeSpeed/70);
+    }
+    initGC(){
+        let flag = true;
+        let pointChance = 0;
+        let getGameDisp = document.getElementById('game-screen');
+        getGameDisp.addEventListener('mousemove',this.moveGC,false);
+        getGameDisp.addEventListener('click', ()=>{
+            if(flag == true){
+                getGameDisp.removeEventListener('mousemove',this.moveGC,false);
+                let createForceBar = document.getElementById('forge');
+                createForceBar.style.display = 'flex';
+                this.forgeBar(pointChance);
+                flag = false
+            }
+            else if(flag == false){
+                clearInterval(this.gameOptions.fBar);
+                this.checkGoal();
+                flag = true;
+            }
+        })
+    }
+    changeDirL(){
+        if(this.gameOptions.lDir == 1){
+            this.gameOptions.lDir = -1;
+            return
+        }
+        if(this.gameOptions.lDir == -1){
+            this.gameOptions.lDir = 1;
+            return
+        }
+    }
+    checkGoal(){
+        
     }
 }
