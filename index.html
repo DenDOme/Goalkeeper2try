@@ -19,11 +19,13 @@
         <div class="game-screen__header">
             <div class="game-screen__username" id="player"></div>
             <span class="game-screen__timer" id="timer">5: 00</span>
-            <div class="game-screen__pause" id="pause"></div>
+            <div class="game-screen__score" id="score">0</div>
         </div>
         <div class="game-screen__main" id="game">
-            <div class="game-screen__gate" id="gate"></div>
-            <div class="game-screen__ball" id="ball"></div>
+            <div class="game-screen__action">action: <span id="action"></span></div>
+            <div class="game-screen__gate" id="gate">
+                <div class="game-screen__goalkeeper" id="goalkeeper"></div>
+            </div>
             <div class="game-screen__forge" id="forge" style="display: none;">
                 <div class="forge-sec"></div>
                 <div class="forge-sec"></div>
@@ -33,6 +35,11 @@
             </div>
         </div>
         <div class="game-screen__cursor" id="cursor" style="display: none;"></div>
+    </div>
+    <div id="end-screen" class="end-screen screen" style="display: none;">
+        <h1 class="end-screen__title">Game Over</h1>
+        <div class="end-screen__username">Username: <span id="playerName"></span></div>
+        <div class="end-screen__point">Score:   <span id="endScore"></span></div>
     </div>
 </body>
 </html>

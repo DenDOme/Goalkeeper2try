@@ -83,12 +83,14 @@ body , input , button{
     font-size: 120px;
     color: red;
 }
-.goalkeeper{
-    background: #000;
+.game-screen__goalkeeper{
+    background: #d1b798;
     width: 100px;
     height: 150px;
     position: absolute;
+    transform: translateX(-50%);
     bottom: 0;
+    left: 399px;
 }
 
 /* game-screen */
@@ -114,15 +116,6 @@ body , input , button{
     border: 5px solid #000;
     border-radius: 5px 5px 0px 0px;
     border-bottom: 0;
-}
-
-.game-screen__ball{
-    width: 50px;
-    height: 50px;
-    background: #fff;
-    border: 5px solid #000;
-    border-radius: 80px;
-    margin: 0 auto;
 }
 .game-screen__forge{
     height: 100px;
@@ -162,4 +155,21 @@ body , input , button{
 }
 .forge-sec:nth-child(5){
     background: #ff0000;
+}
+.game-screen__action{
+    text-align: center;
+}
+/* ---------------------- */
+
+.end-screen{
+    background: #afa8a8;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 60px;
+}
+.end-screen h1{
+    font-size: 100px;
+    color: #cf0303;
 }
